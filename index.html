@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 2 Award in Wines - Exam #2</title>
+<style>
+  :root {
+    --ink:        #0e0c14;
+    --deep:       #12101c;
+    --slate:      #1c1928;
+    --violet:     #2a2040;
+    --grape:      #5c3d7a;
+    --amethyst:   #9b72cf;
+    --gold:       #c8a951;
+    --gold-light: #e4cc88;
+    --amber:      #d4853a;
+    --cream:      #f4efe6;
+    --parchment:  #e8e0d0;
+    --mist:       #f9f7f3;
+    --correct:    #2d6a4f;
+    --correct-l:  #6fcf97;
+    --wrong:      #8b1a2e;
+    --wrong-l:    #e9a0a3;
+    --neutral:    rgba(244,239,230,0.5);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 100% 55% at 50% -5%, rgba(92,61,122,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 40% at 85% 85%, rgba(200,169,81,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 5% 60%, rgba(92,61,122,0.2) 0%, transparent 50%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.032'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; right: 0;
+    width: 320px; height: 100vh;
+    background-image:
+      repeating-linear-gradient(
+        -15deg,
+        transparent,
+        transparent 60px,
+        rgba(200,169,81,0.03) 60px,
+        rgba(200,169,81,0.03) 61px
+      );
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 28px 100px; }
+
+  header {
+    padding: 64px 0 52px;
+    border-bottom: 1px solid rgba(200,169,81,0.18);
+    margin-bottom: 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+  }
+  .header-left {}
+  .level-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .level-tag .line { width: 32px; height: 1px; background: var(--gold); }
+  .level-tag span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: clamp(34px, 5.5vw, 60px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--cream);
+  }
+  h1 em { color: var(--gold); font-style: italic; }
+  .header-right { text-align: right; padding-bottom: 4px; }
+  .wset-logo {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(200,169,81,0.55);
+    line-height: 1.8;
+  }
+
+  .info-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid rgba(200,169,81,0.15);
+    margin-bottom: 44px;
+    background: rgba(200,169,81,0.04);
+  }
+  .info-cell {
+    padding: 30px 18px;
+    text-align: center;
+    border-right: 1px solid rgba(200,169,81,0.1);
+  }
+  .info-cell:last-child { border-right: none; }
+  .info-cell .val {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .info-cell .lbl {
+    margin-top: 7px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.45);
+    font-weight: 500;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(200,169,81,0.1);
+    border: 1px solid rgba(200,169,81,0.1);
+    margin-bottom: 44px;
+  }
+  .topic-cell {
+    background: var(--deep);
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(244,239,230,0.55);
+    letter-spacing: 0.3px;
+  }
+  .topic-cell::before {
+    content: '—';
+    color: var(--gold);
+    margin-right: 8px;
+    opacity: 0.6;
+  }
+
+  .intro-copy {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: rgba(244,239,230,0.65);
+    max-width: 600px;
+    margin: 0 auto 44px;
+    text-align: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    padding: 17px 52px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.18s;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(200,169,81,0.35);
+    color: var(--gold);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(200,169,81,0.07); border-color: rgba(200,169,81,0.6); }
+
+  #exam-screen { display: none; }
+
+  .exam-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(200,169,81,0.1);
+  }
+  .q-counter {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .q-counter span { font-size: 15px; color: rgba(244,239,230,0.35); margin-left: 2px; }
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amethyst);
+    opacity: 0.8;
+  }
+
+  .dot-track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 36px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(200,169,81,0.12);
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .dot.done-correct { background: var(--correct); }
+  .dot.done-wrong   { background: var(--wrong); }
+  .dot.current      { background: var(--gold); box-shadow: 0 0 6px rgba(200,169,81,0.5); }
+
+  .q-card {
+    background: rgba(28,25,40,0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(200,169,81,0.12);
+    padding: 44px 48px;
+    margin-bottom: 20px;
+    animation: qSlide 0.32s ease both;
+  }
+  @keyframes qSlide {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .q-category {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--amethyst);
+    opacity: 0.75;
+    margin-bottom: 14px;
+  }
+  .q-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--cream);
+    margin-bottom: 34px;
+  }
+
+  .options { display: grid; gap: 9px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 15px 20px;
+    border: 1px solid rgba(200,169,81,0.1);
+    background: rgba(255,255,255,0.025);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(244,239,230,0.78);
+    text-align: left;
+    width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  .opt:hover:not(:disabled) {
+    border-color: rgba(200,169,81,0.4);
+    background: rgba(200,169,81,0.055);
+    transform: translateX(3px);
+  }
+  .opt-letter {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(200,169,81,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--gold);
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .opt.correct { border-color: rgba(45,106,79,0.65); background: rgba(45,106,79,0.1); color: #b3dfc5; }
+  .opt.correct .opt-letter { background: var(--correct); border-color: var(--correct); color: #fff; }
+  .opt.wrong   { border-color: rgba(139,26,46,0.6); background: rgba(139,26,46,0.1); color: var(--wrong-l); }
+  .opt.wrong .opt-letter { background: var(--wrong); border-color: var(--wrong); color: #fff; }
+  .opt.revealed { opacity: 0.42; }
+  .opt:disabled { cursor: default; transform: none; }
+
+  .explanation {
+    display: none;
+    margin-top: 22px;
+    padding: 18px 24px;
+    border-left: 2px solid var(--gold);
+    background: linear-gradient(90deg, rgba(200,169,81,0.06) 0%, transparent 100%);
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(244,239,230,0.65);
+    animation: fadeUp 0.3s ease;
+  }
+  .explanation.show { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .explanation strong { color: var(--gold-light); font-weight: 500; }
+
+  .q-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+  .score-running {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(244,239,230,0.35);
+    letter-spacing: 0.5px;
+  }
+  .score-running b { color: var(--gold); font-weight: 500; }
+
+  #results-screen { display: none; }
+
+  .results-hero {
+    text-align: center;
+    padding: 20px 0 52px;
+    border-bottom: 1px solid rgba(200,169,81,0.12);
+    margin-bottom: 48px;
+  }
+  .ring-wrap { position: relative; display: inline-block; margin-bottom: 32px; }
+  .score-ring { transform: rotate(-90deg); }
+  .r-bg { fill: none; stroke: rgba(200,169,81,0.1); stroke-width: 5; }
+  .r-fill {
+    fill: none; stroke-width: 5; stroke-linecap: butt;
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+    transition: stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .r-pass { stroke: url(#lvl2grad); }
+  .r-fail { stroke: var(--wrong); }
+  .ring-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .ring-pct {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .ring-pct.pass { color: var(--gold); }
+  .ring-pct.fail { color: var(--wrong-l); }
+  .ring-note { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(244,239,230,0.35); margin-top: 5px; }
+
+  .verdict {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 38px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .verdict.pass { color: var(--gold); }
+  .verdict.fail { color: var(--wrong-l); }
+  .verdict-msg {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.4);
+    font-weight: 400;
+    margin-bottom: 48px;
+  }
+
+  .results-stats {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgba(200,169,81,0.15);
+    margin: 0 auto 48px;
+    max-width: 500px;
+  }
+  .rstat {
+    flex: 1;
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(200,169,81,0.12);
+  }
+  .rstat:last-child { border-right: none; }
+  .rstat .rv {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .rstat .rv.g { color: var(--correct-l); }
+  .rstat .rv.r { color: var(--wrong-l); }
+  .rstat .rv.o { color: var(--gold); }
+  .rstat .rl { font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(244,239,230,0.35); margin-top: 7px; }
+
+  .breakdown {
+    margin-bottom: 48px;
+    border: 1px solid rgba(200,169,81,0.12);
+  }
+  .bd-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(200,169,81,0.1);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.4);
+  }
+  .bd-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .bd-row:last-child { border-bottom: none; }
+  .bd-name { flex: 1; font-size: 13px; color: rgba(244,239,230,0.7); }
+  .bd-bar-wrap { flex: 2; height: 4px; background: rgba(200,169,81,0.1); }
+  .bd-bar { height: 100%; transition: width 1s ease; }
+  .bd-score { font-size: 12px; font-weight: 500; color: var(--gold); min-width: 40px; text-align: right; }
+
+  .review-section { margin-top: 8px; }
+  .review-hd {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(200,169,81,0.15);
+  }
+  .rev-item {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .rev-cat { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--amethyst); margin-bottom: 6px; opacity: 0.8; }
+  .rev-q { font-family: Georgia, 'Times New Roman', Times, serif; font-size: 16.5px; margin-bottom: 10px; line-height: 1.45; }
+  .rev-ans { font-size: 12.5px; font-weight: 300; }
+  .rev-ans .your { color: var(--wrong-l); display: block; margin-bottom: 2px; }
+  .rev-ans .ok   { color: var(--correct-l); display: block; margin-bottom: 2px; }
+  .rev-exp { margin-top: 8px; font-size: 12px; line-height: 1.7; color: rgba(244,239,230,0.5); padding-left: 12px; border-left: 1px solid rgba(200,169,81,0.2); }
+  .rev-exp strong { color: rgba(200,169,81,0.85); font-weight: 500; }
+
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  @media (max-width: 640px) {
+    .q-card { padding: 28px 22px; }
+    .info-strip { grid-template-columns: repeat(2,1fr); }
+    .topics-grid { grid-template-columns: repeat(2,1fr); }
+    header { grid-template-columns: 1fr; }
+    .header-right { text-align: left; }
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  body { overscroll-behavior-y: contain; }
+  .wrap { max-width: 760px; padding: 0 16px 72px; }
+  .btn-primary, .btn-ghost { min-height: 48px; border-radius: 12px; }
+  .opt { min-height: 56px; border-radius: 12px; }
+  .q-card { border-radius: 16px; }
+
+  @media (max-width: 768px) {
+    header { padding: 32px 0 28px; margin-bottom: 28px; gap: 16px; }
+    .info-strip { margin-bottom: 24px; }
+    .info-cell { padding: 18px 12px; }
+    .info-cell .val { font-size: 30px; }
+    .topics-grid { grid-template-columns: 1fr; margin-bottom: 24px; }
+    .topic-cell { padding: 12px 14px; font-size: 13px; }
+    .intro-copy { font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+    .exam-topbar {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(14,12,20,0.97);
+      backdrop-filter: blur(10px);
+      padding: 10px 0 14px; margin-bottom: 18px;
+    }
+    .q-counter { font-size: 24px; }
+    .q-card { padding: 22px 18px; margin-bottom: 14px; }
+    .q-text { font-size: 20px; line-height: 1.45; margin-bottom: 22px; }
+    .options { gap: 10px; }
+    .opt { padding: 14px 14px; font-size: 15px; line-height: 1.45; }
+    .opt-letter { width: 30px; height: 30px; }
+    .explanation { padding: 14px 16px; font-size: 14px; line-height: 1.65; }
+    .q-nav { gap: 12px; align-items: stretch; flex-direction: column; }
+    .q-nav .btn-primary { width: 100%; }
+    .results-stats { flex-direction: column; }
+    .rstat { border-right: none; border-bottom: 1px solid rgba(200,169,81,0.12); }
+    .rstat:last-child { border-bottom: none; }
+    .bd-row { display: block; padding: 14px 16px; }
+    .bd-name { margin-bottom: 8px; }
+    .bd-score { margin-top: 8px; text-align: left; }
+    .btn-row { flex-direction: column; }
+    .btn-row button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="header-left">
+    <div class="level-tag"><div class="line"></div><span>Wine &amp; Spirit Education Trust</span></div>
+    <h1>Level 2<br><em>Award in Wines</em></h1>
+  </div>
+  <div class="header-right">
+    <div class="wset-logo">Mock<br>Examination<br>Exam #2</div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div id="intro-screen">
+  <div class="info-strip">
+    <div class="info-cell"><div class="val">50</div><div class="lbl">Questions</div></div>
+    <div class="info-cell"><div class="val">70%</div><div class="lbl">Pass Mark</div></div>
+    <div class="info-cell"><div class="val">35</div><div class="lbl">Required Correct</div></div>
+    <div class="info-cell"><div class="val">10</div><div class="lbl">Topics Covered</div></div>
+  </div>
+
+  <div class="topics-grid">
+    <div class="topic-cell">France — Bordeaux &amp; Burgundy</div>
+    <div class="topic-cell">France — Rhône, Loire &amp; Alsace</div>
+    <div class="topic-cell">Germany &amp; Austria</div>
+    <div class="topic-cell">Italy — North, Central &amp; South</div>
+    <div class="topic-cell">Spain &amp; Portugal</div>
+    <div class="topic-cell">New World Regions</div>
+    <div class="topic-cell">Sparkling Wines</div>
+    <div class="topic-cell">Fortified Wines</div>
+    <div class="topic-cell">Winemaking &amp; Viticulture</div>
+    <div class="topic-cell">Tasting &amp; Food Pairing</div>
+  </div>
+
+  <p class="intro-copy">
+    This second mock examination covers fresh territory across the full WSET Level 2 syllabus — classifications, soils, regional varieties, production techniques, label terms, and service. All 50 questions are entirely new. Each question has one correct answer.
+  </p>
+  <div style="text-align:center">
+    <button class="btn-primary" id="begin-exam-btn" type="button">Begin Examination</button>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="exam-screen">
+  <div class="exam-topbar">
+    <div class="q-counter" id="q-counter">1 <span>/ 50</span></div>
+    <div class="section-tag" id="section-tag">Loading…</div>
+  </div>
+  <div class="dot-track" id="dot-track"></div>
+  <div id="question-area"></div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-screen">
+  <svg width="0" height="0">
+    <defs>
+      <linearGradient id="lvl2grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#5c3d7a"></stop>
+        <stop offset="100%" style="stop-color:#c8a951"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="results-hero">
+    <div class="ring-wrap">
+      <svg class="score-ring" width="180" height="180" viewBox="0 0 180 180">
+        <circle class="r-bg" cx="90" cy="90" r="80"></circle>
+        <circle class="r-fill" id="r-arc" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <div class="ring-label">
+        <div class="ring-pct" id="r-pct">0%</div>
+        <div class="ring-note">Score</div>
+      </div>
+    </div>
+    <div class="verdict" id="r-verdict"></div>
+    <div class="verdict-msg" id="r-msg"></div>
+    <div class="results-stats">
+      <div class="rstat"><div class="rv g" id="r-correct">0</div><div class="rl">Correct</div></div>
+      <div class="rstat"><div class="rv r" id="r-wrong">0</div><div class="rl">Incorrect</div></div>
+      <div class="rstat"><div class="rv o" id="r-total">50</div><div class="rl">Total</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-ghost" onclick="retakeExam()">Retake Exam</button>
+      <button class="btn-primary" onclick="toggleReview()">Review Answers</button>
+    </div>
+  </div>
+
+  <div class="breakdown" id="breakdown-section"></div>
+  <div class="review-section" id="review-section" style="display:none"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const QUESTIONS = [
+
+  // ── FRANCE: BORDEAUX ──
+  {
+    cat: "France — Bordeaux",
+    q: "The 1855 Classification of the Médoc divided its top châteaux into how many official tiers of 'growths' (Crus Classés)?",
+    opts: ["Three (Premier to Troisième Cru)", "Four (Premier to Quatrième Cru)", "Five (Premier to Cinquième Cru)", "Seven (Premier to Septième Cru)"],
+    ans: 2,
+    explain: "The <strong>1855 Médoc Classification</strong> created five tiers — <strong>Premier Cru through Cinquième Cru</strong> (First to Fifth Growth). It has changed only once: Mouton Rothschild was elevated from Second to First Growth in 1973. The same 1855 exercise also ranked the sweet wines of Sauternes and Barsac."
+  },
+  {
+    cat: "France — Bordeaux",
+    q: "Which grape variety dominates the blend in Sauternes, prized for its thin skin and natural susceptibility to noble rot (botrytis cinerea)?",
+    opts: ["Sauvignon Blanc", "Muscadelle", "Sémillon", "Chenin Blanc"],
+    ans: 2,
+    explain: "<strong>Sémillon</strong> typically makes up 70–80% of Sauternes blends. Its thin skin makes it highly susceptible to <strong>botrytis cinerea</strong>, which concentrates sugars and acids while adding honey, apricot, and marmalade complexity. Sauvignon Blanc provides freshness and acidity in the blend."
+  },
+  {
+    cat: "France — Bordeaux",
+    q: "Pomerol is unique among the major Bordeaux appellations because it:",
+    opts: ["Has its own 1855 ranking of estates, separate from the Médoc classification", "Has never had an official château classification", "Produces only white wines from Sémillon and Sauvignon Blanc", "Requires a minimum of 50% Cabernet Sauvignon in all its red wines"],
+    ans: 1,
+    explain: "<strong>Pomerol</strong>, home to iconic estates such as Pétrus and Le Pin, has <strong>never had an official classification</strong> — unlike the 1855 Médoc, St-Émilion (which has its own classification), or Graves/Pessac-Léognan. Prices for top Pomerol are driven entirely by market reputation."
+  },
+
+  // ── FRANCE: BURGUNDY ──
+  {
+    cat: "France — Burgundy",
+    q: "What is the role of a 'négociant-éleveur' in Burgundy?",
+    opts: ["A government official who officially classifies vineyards for Grand Cru status", "A merchant who buys grapes or wine from multiple growers, then blends, ages, and bottles under their own brand", "A specialist consultant who advises growers on converting to organic farming", "A viticulturalist who manages multiple domaines on behalf of absentee owners"],
+    ans: 1,
+    explain: "A <strong>négociant-éleveur</strong> buys grapes, juice, or finished wine from growers, then 'raises' (élevage) the wine in their own cellars before bottling under their brand. Major Burgundy négociants include Louis Jadot and Joseph Drouhin. This contrasts with <strong>domaine-bottled</strong> wines (mis en bouteille au Domaine), which are estate-grown and produced."
+  },
+  {
+    cat: "France — Burgundy",
+    q: "Pouilly-Fuissé is a prestigious white Burgundy appellation producing full-bodied Chardonnay. In which Burgundy sub-region is it located?",
+    opts: ["Chablis", "Côte de Nuits", "Mâconnais", "Côte Chalonnaise"],
+    ans: 2,
+    explain: "<strong>Pouilly-Fuissé</strong> is the premier white wine appellation of the <strong>Mâconnais</strong>, producing full-bodied, sometimes oak-influenced Chardonnay. It is easily confused with Pouilly-Fumé in the Loire Valley, which is a completely different wine made from Sauvignon Blanc."
+  },
+  {
+    cat: "France — Burgundy",
+    q: "Kimmeridgian limestone — a geological stratum containing fossilised oyster shells — is most closely associated with which Burgundy appellation?",
+    opts: ["Gevrey-Chambertin", "Pommard", "Chablis", "Chambolle-Musigny"],
+    ans: 2,
+    explain: "<strong>Chablis</strong> Grand and Premier Cru vineyards are planted on <strong>Kimmeridgian limestone</strong>, rich in fossilised marine life including Exogyra virgula oyster shells. This unique geology is credited with contributing to Chablis's signature flinty, saline mineral character alongside its crisp acidity."
+  },
+
+  // ── FRANCE: RHÔNE ──
+  {
+    cat: "France — Rhône Valley",
+    q: "Which grape variety is the primary component of white Hermitage (Hermitage Blanc) from the Northern Rhône, producing full-bodied, long-lived whites?",
+    opts: ["Viognier", "Roussanne", "Marsanne", "Clairette"],
+    ans: 2,
+    explain: "<strong>Marsanne</strong> is the dominant variety in white <strong>Hermitage</strong> and Crozes-Hermitage Blanc, often blended with a smaller proportion of Roussanne. Marsanne produces wines of remarkable richness and longevity, developing notes of beeswax, stone fruit, and almond with age. Viognier is the key white grape of Condrieu, further north."
+  },
+  {
+    cat: "France — Rhône Valley",
+    q: "Crozes-Hermitage surrounds the prestigious hill of Hermitage in the Northern Rhône. How does it typically compare to Hermitage wines?",
+    opts: ["Identical in price and quality — the two appellations share the same terroir", "Lighter and more accessible, made from the same varieties but from flatter, less concentrated sites — offering excellent value", "Exclusively sweet late-harvest white wines from Roussanne", "Sparkling wines produced by the traditional method using Syrah"],
+    ans: 1,
+    explain: "<strong>Crozes-Hermitage</strong> draws from flatter, surrounding sites rather than the famous granitic hill itself. It produces the same red (<strong>Syrah</strong>) and white (<strong>Marsanne/Roussanne</strong>) varieties but in a lighter, more approachable style and at significantly lower prices — making it one of the Northern Rhône's best-value appellations."
+  },
+  {
+    cat: "France — Rhône Valley",
+    q: "Muscat de Beaumes-de-Venise is a sweet Vin Doux Naturel from the Southern Rhône. From which grape variety is it produced?",
+    opts: ["Grenache Blanc", "Muscat Blanc à Petits Grains", "Roussanne", "Clairette Blanche"],
+    ans: 1,
+    explain: "<strong>Muscat de Beaumes-de-Venise</strong> is made from <strong>Muscat Blanc à Petits Grains</strong>. Fermentation is arrested by adding neutral grape spirit (mutage), preserving natural sweetness and producing a fragrant, golden wine with fresh grape, orange blossom, and peach character. It is served chilled as an aperitif or dessert wine."
+  },
+
+  // ── FRANCE: LOIRE & ALSACE ──
+  {
+    cat: "France — Loire & Alsace",
+    q: "Which grape variety is used for sweet dessert wines from Anjou, including Coteaux du Layon and Quarts de Chaume?",
+    opts: ["Sauvignon Blanc", "Chenin Blanc", "Melon de Bourgogne", "Chardonnay"],
+    ans: 1,
+    explain: "<strong>Chenin Blanc</strong> is the signature grape of the middle Loire's Anjou-Touraine zone. Its naturally high acidity allows it to balance significant residual sugar, producing wines ranging from bone-dry Savennières to luscious, botrytis-affected <strong>Coteaux du Layon</strong> and the Grand Cru Quarts de Chaume."
+  },
+  {
+    cat: "France — Loire & Alsace",
+    q: "Which of the following Loire Valley wines is a traditional-method sparkling wine produced primarily from Chenin Blanc?",
+    opts: ["Muscadet Sèvre et Maine", "Sancerre Blanc", "Crémant de Loire", "Pouilly-Fumé"],
+    ans: 2,
+    explain: "<strong>Crémant de Loire</strong> is a traditional-method (bottle-fermented) sparkling wine from the Loire Valley, primarily based on <strong>Chenin Blanc</strong> along with other permitted varieties. It undergoes secondary fermentation in the bottle and must spend a minimum of 9 months on the lees before release."
+  },
+  {
+    cat: "France — Loire & Alsace",
+    q: "In Alsace, what does the label term 'Vendange Tardive' indicate?",
+    opts: ["The wine was produced using whole-bunch carbonic maceration", "A late-harvest wine made from overripe grapes with higher natural sugar levels — potentially ranging from off-dry to sweet", "The wine has been aged for at least 12 months in new Alsatian oak barriques", "A blend of all four noble Alsace varieties (Riesling, Gewurztraminer, Pinot Gris, Muscat)"],
+    ans: 1,
+    explain: "<strong>Vendange Tardive</strong> ('late harvest') in Alsace indicates grapes harvested later and at significantly higher ripeness than standard wines. The style can range from off-dry to fully sweet depending on fermentation. The higher tier, <strong>Sélection de Grains Nobles</strong> (SGN), uses individually hand-selected botrytis-affected berries."
+  },
+
+  // ── GERMANY & AUSTRIA ──
+  {
+    cat: "Germany & Austria",
+    q: "What does the term 'Spätburgunder' refer to on a German wine label?",
+    opts: ["A dry, late-harvest Riesling with high residual sugar", "The German name for Pinot Noir", "A grape cross between Riesling and Silvaner, developed in Germany", "A sparkling wine made by the traditional method in the Baden region"],
+    ans: 1,
+    explain: "<strong>Spätburgunder</strong> is Germany's name for <strong>Pinot Noir</strong>. Regions including the Ahr, Baden, and Pfalz produce increasing quantities of high-quality Spätburgunder — often lighter and more elegant than Burgundy Pinot Noir, with red cherry, spice, and earthy character."
+  },
+  {
+    cat: "Germany & Austria",
+    q: "How does Trockenbeerenauslese (TBA) differ from Beerenauslese (BA) in German wine law?",
+    opts: ["TBA grapes are mechanically frozen while BA grapes are simply overripe — both reach similar sugar levels", "TBA is produced from individually selected shrivelled, botrytis-affected berries resulting in even more concentrated, honey-like wines than BA", "TBA must be barrel-fermented while BA is always fermented in stainless steel", "TBA can only be made from Riesling while BA allows any authorised variety"],
+    ans: 1,
+    explain: "<strong>Trockenbeerenauslese</strong> (TBA) grapes are individually selected shrivelled berries (trockenbeer = 'dried berry'), usually heavily botrytis-affected, producing extraordinarily concentrated, syrup-like wines. The minimal yields and intensive selective harvesting make TBA Germany's rarest and most expensive wines — legendary for their longevity."
+  },
+  {
+    cat: "Germany & Austria",
+    q: "What is the most common production method used for the majority of German Sekt sparkling wine?",
+    opts: ["Traditional method — secondary fermentation in the individual bottle", "Tank method — secondary fermentation in large sealed pressurised tanks", "Carbonation — injection of CO₂ into still wine just before bottling", "Ancestral method — single fermentation completed in the sealed bottle"],
+    ans: 1,
+    explain: "The majority of <strong>Sekt</strong> is produced by the <strong>tank method (Charmat)</strong>, fermenting in large sealed tanks rather than individual bottles. This is more economical and preserves fresh, primary fruit. Premium <strong>Winzersekt</strong> or <strong>Deutscher Sekt b.A.</strong> may use the traditional method and will typically state this on the label."
+  },
+  {
+    cat: "Germany & Austria",
+    q: "The Wachau region in Austria has its own unofficial classification for dry white wines. What is the highest and most powerful tier in this system?",
+    opts: ["Steinfeder", "Federspiel", "Smaragd", "Auslese"],
+    ans: 2,
+    explain: "Wachau's three unofficial quality tiers from lightest to fullest are: <strong>Steinfeder</strong> (lightest, under 11.5% ABV), <strong>Federspiel</strong> (medium-bodied), and <strong>Smaragd</strong> (the most concentrated and age-worthy, named after the emerald-green Smaragd lizard found in the vineyards). Smaragd wines must exceed 12.5% ABV."
+  },
+
+  // ── ITALY ──
+  {
+    cat: "Italy",
+    q: "Moscato d'Asti is a lightly sparkling sweet wine from Piedmont. Which of the following best describes its typical style?",
+    opts: ["Full-bodied, high alcohol (over 14% ABV), with toasty oak and oxidative notes", "Very light-bodied, low alcohol (around 5–6.5% ABV), gently frizzante, with delicate sweetness and intense floral, peach, and apricot aromas", "Deep ruby, high tannin, and earthy dried fruit — similar to Amarone", "Bone-dry, high-acid, and flinty in character"],
+    ans: 1,
+    explain: "<strong>Moscato d'Asti</strong> is made from Muscat Blanc à Petits Grains (Moscato Bianco). Fermentation is halted early, leaving residual sweetness and low alcohol (typically <strong>5–6.5% ABV</strong>). The gentle frizzante sparkle, intense floral aromas, and peach/apricot flavour make it one of Italy's most distinctive and charming dessert wines."
+  },
+  {
+    cat: "Italy",
+    q: "Vernaccia di San Gimignano, Italy's first DOC wine (1966, now DOCG), produces which style?",
+    opts: ["Full-bodied tannic red from the Vernaccia grape", "Dry, crisp white with citrus, almond, and mineral notes from the Vernaccia grape", "Rich amber, oxidative fortified wine similar to Vin Santo", "Sweet sparkling wine with rose-petal aromas"],
+    ans: 1,
+    explain: "<strong>Vernaccia di San Gimignano</strong> produces dry white wines from the <strong>Vernaccia</strong> grape around the medieval hilltop town of San Gimignano in Tuscany. Typically medium-bodied and crisp, with citrus, stone fruit, and a characteristic slightly bitter almond finish — a refreshing local white wine style."
+  },
+  {
+    cat: "Italy",
+    q: "Aglianico del Vulture is a prestigious DOCG from southern Italy. Which of the following best describes the style of Aglianico red wines?",
+    opts: ["Light-bodied, low tannin, and pale in colour — similar in style to Pinot Noir", "Full-bodied, high tannin, high acidity, and dark fruit — often requiring significant ageing to reach their best", "Rich, sweet, and fortified with raisin and chocolate notes", "Delicate, floral, and lightly sparkling with low alcohol"],
+    ans: 1,
+    explain: "<strong>Aglianico</strong> is sometimes called the 'Barolo of the South.' It produces <strong>full-bodied, high-tannin, high-acidity</strong> wines with dark berry, tar, tobacco, and earthy character that require considerable bottle age to soften. Aglianico del Vulture is grown on the volcanic soils of Monte Vulture in Basilicata."
+  },
+  {
+    cat: "Italy",
+    q: "Lambrusco is a lightly sparkling red wine. In which Italian region is it predominantly produced?",
+    opts: ["Tuscany", "Sicily", "Emilia-Romagna", "Piedmont"],
+    ans: 2,
+    explain: "<strong>Lambrusco</strong> originates in <strong>Emilia-Romagna</strong>, especially around Modena and Reggio Emilia. Made from the Lambrusco family of grape varieties, it ranges from dry (secco) to sweet (dolce) and is characterised by a vivid red-purple colour, bright cherry acidity, and a frothy, fizzy perlage."
+  },
+
+  // ── SPAIN & PORTUGAL ──
+  {
+    cat: "Spain & Portugal",
+    q: "Ribera del Duero, a prestigious DO in Castilla y León, is built around a local clone of which well-known red grape variety?",
+    opts: ["Garnacha", "Monastrell", "Tempranillo", "Mencía"],
+    ans: 2,
+    explain: "<strong>Ribera del Duero's</strong> signature red grape — called <strong>Tinto Fino</strong> or Tinta del País locally — is a regional clone of <strong>Tempranillo</strong>. At high altitude (850–1,000m) on the Douro plateau, with extreme continental temperatures, the wines tend to be more powerful and structured than Rioja Tempranillo."
+  },
+  {
+    cat: "Spain & Portugal",
+    q: "What role does the albariza soil play in the vineyards of Jerez (Sherry country)?",
+    opts: ["It is a dark, rich clay soil that maximises vine yields for large-scale production", "It is a brilliant white chalky limestone soil that reflects sunlight and retains winter moisture, slowly releasing it to vine roots through the hot, dry summer", "It contains naturally occurring flor yeast, triggering biological ageing without winemaker intervention", "It directly imparts a salty mineral taste to the wine through the grape roots"],
+    ans: 1,
+    explain: "<strong>Albariza</strong> is a distinctive chalky white limestone and clay soil unique to the Sherry triangle (Jerez de la Frontera, El Puerto de Santa María, Sanlúcar de Barrameda). It acts as a moisture reservoir — absorbing winter rainfall and releasing it slowly to the Palomino vine roots during the scorching, dry summer growing season."
+  },
+  {
+    cat: "Spain & Portugal",
+    q: "Why does Oloroso Sherry taste fundamentally different from Fino Sherry, despite both being produced from Palomino grapes in Jerez?",
+    opts: ["Oloroso is made from Pedro Ximénez grapes, while Fino uses Palomino exclusively", "Oloroso is fortified to a higher level preventing flor from developing, so it ages entirely through oxidative contact with air — producing a darker, richer, nuttier wine", "Oloroso is only produced in Sanlúcar de Barrameda, while Fino is made throughout Jerez", "Oloroso is always a sweet wine, while Fino is invariably bone dry"],
+    ans: 1,
+    explain: "<strong>Oloroso</strong> is fortified to 17–18% ABV (vs. 15–15.5% for Fino), which prevents flor yeast from forming. Without this protective yeast layer, Oloroso ages <strong>oxidatively</strong> in contact with air in the solera, becoming dark amber-mahogany with complex dried fruit, walnut, leather, and spice. In its natural state it is dry; Cream Sherry is sweetened Oloroso."
+  },
+  {
+    cat: "Spain & Portugal",
+    q: "The Monção e Melgaço sub-region of Vinho Verde is celebrated for single-varietal Alvarinho. How do these wines typically differ from standard multi-grape Vinho Verde blends?",
+    opts: ["They are sweeter, with significant residual sugar", "They are fuller-bodied, more aromatic, higher in alcohol, and more concentrated — capable of some bottle ageing", "They are sparkling only, produced exclusively by the traditional method", "They have a lower minimum alcohol content and must not exceed 9% ABV"],
+    ans: 1,
+    explain: "<strong>Alvarinho</strong> (Albariño in Spain) from <strong>Monção e Melgaço</strong> — the northernmost sub-region of Vinho Verde — produces wines of much greater concentration and aromatic intensity than standard multi-varietal Vinho Verde blends. They are fuller-bodied, higher in alcohol, and show stone fruit, citrus, and floral complexity with the capacity to age."
+  },
+  {
+    cat: "Spain & Portugal",
+    q: "Late Bottled Vintage (LBV) Port is aged in cask for how long before bottling, and what distinguishes filtered from unfiltered LBV?",
+    opts: ["1–2 years; filtered LBV contains sediment while unfiltered is crystal clear", "4–6 years; filtered LBV requires no decanting while unfiltered LBV throws sediment like Vintage Port and should be decanted", "8–10 years; both styles must be decanted due to heavy sediment", "2–3 years; both styles require many years of bottle ageing before they are ready to drink"],
+    ans: 1,
+    explain: "<strong>LBV Port</strong> spends <strong>4–6 years in cask</strong> before bottling. <strong>Filtered (commercial) LBV</strong> is cold-stabilised and clarified — it can be poured without decanting. <strong>Unfiltered (single quinta) LBV</strong> throws a sediment and benefits from decanting, offering a quality and character closer to a declared Vintage Port."
+  },
+
+  // ── NEW WORLD: AMERICAS ──
+  {
+    cat: "New World — Americas",
+    q: "The Casablanca Valley has become one of Chile's most important wine regions. What distinguishes it from Chile's warmer interior valleys?",
+    opts: ["It is Chile's hottest region, best suited to powerful Cabernet Sauvignon", "It is a cool-climate coastal valley, cooled by Pacific Ocean fog, producing aromatic whites (Sauvignon Blanc, Chardonnay) and Pinot Noir", "It is the only region warm enough to ripen Carmenère to full phenolic maturity", "Chile's oldest wine region, planted exclusively with traditional País (Listán Prieto) vines"],
+    ans: 1,
+    explain: "<strong>Casablanca Valley</strong> near Valparaíso was developed from the 1980s and benefits from <strong>Pacific Ocean cooling fogs and breezes</strong>. This enables it to produce fresh, aromatic <strong>Sauvignon Blanc, Chardonnay</strong>, and increasingly impressive <strong>Pinot Noir</strong> — in marked contrast to the warmer Central Valley regions that excel with red varieties."
+  },
+  {
+    cat: "New World — Americas",
+    q: "Zinfandel is a quintessentially Californian grape variety, yet DNA analysis has proven it is genetically identical to which Italian grape?",
+    opts: ["Sangiovese", "Primitivo (from Puglia, southern Italy)", "Barbera d'Asti", "Corvina Veronese"],
+    ans: 1,
+    explain: "DNA fingerprinting confirmed that California's <strong>Zinfandel</strong> is genetically identical to <strong>Primitivo</strong> from Puglia in southern Italy, as well as the Croatian variety Tribidrag. In warm Californian conditions Zinfandel produces full-bodied, high-alcohol wines with jammy dark berry fruit, black pepper, and spice."
+  },
+  {
+    cat: "New World — Americas",
+    q: "Hawke's Bay on New Zealand's North Island is best known for which grape varieties?",
+    opts: ["Sauvignon Blanc and Riesling — similar to Marlborough", "Pinot Noir and Pinot Gris — cool-climate varieties", "Cabernet Sauvignon, Merlot, Malbec, and Syrah — Bordeaux and Rhône varieties", "Gewurztraminer and Chardonnay exclusively"],
+    ans: 2,
+    explain: "<strong>Hawke's Bay</strong> is New Zealand's leading region for <strong>red wines</strong> — Cabernet Sauvignon, Merlot, Malbec, and increasingly Syrah. The <strong>Gimblett Gravels</strong> sub-zone, with its free-draining stony soils and warm, sunny climate, produces some of NZ's most structured and concentrated reds."
+  },
+
+  // ── NEW WORLD: AUSTRALIA & NZ ──
+  {
+    cat: "New World — Australia & NZ",
+    q: "The Yarra Valley is a cool-climate wine region recognised for producing fine Pinot Noir and Chardonnay. In which Australian state is it located?",
+    opts: ["South Australia", "Western Australia", "Victoria", "New South Wales"],
+    ans: 2,
+    explain: "The <strong>Yarra Valley</strong> lies east of Melbourne in <strong>Victoria</strong>. Its cooler temperatures — influenced by altitude and maritime conditions from Port Phillip Bay — make it one of Australia's premier sites for elegant <strong>Chardonnay, Pinot Noir</strong>, and traditional-method sparkling wines."
+  },
+  {
+    cat: "New World — Australia & NZ",
+    q: "Many large Australian wine brands label their wines 'South Eastern Australia.' What does this designation indicate?",
+    opts: ["All wines must come from a single approved vineyard within southeastern Australia", "It is a large macro-regional GI covering New South Wales, Victoria, South Australia, and parts of Queensland — used when blending grapes from multiple regions", "South Eastern Australia wines must contain at least 85% Shiraz", "The term is purely decorative and carries no legal geographical meaning"],
+    ans: 1,
+    explain: "'<strong>South Eastern Australia</strong>' is a broad macro-regional <strong>Geographical Indication (GI)</strong> covering multiple states. When a wine blends grapes from, say, both South Australia and New South Wales, it cannot claim either specific regional GI, so this larger designation is used instead. It is common on commercially produced, large-volume wines."
+  },
+  {
+    cat: "New World — Australia & NZ",
+    q: "Margaret River in Western Australia is especially celebrated for which wine style?",
+    opts: ["Powerful Barossa-style Shiraz with ripe dark fruit and chocolate", "Elegant Cabernet Sauvignon and Cabernet/Merlot blends, benefiting from a maritime climate", "Crisp, high-acid Riesling from cool elevated vineyard sites", "Sparkling wines from Pinot Noir and Chardonnay grown on chalk soils"],
+    ans: 1,
+    explain: "<strong>Margaret River</strong>, cooled by the Indian and Southern Oceans, has built its reputation on refined, structured <strong>Cabernet Sauvignon</strong> and Cabernet/Merlot blends — often compared to fine Bordeaux. It also produces high-quality Chardonnay and Semillon-Sauvignon Blanc blends."
+  },
+
+  // ── NEW WORLD: SOUTH AFRICA ──
+  {
+    cat: "New World — South Africa",
+    q: "A 'Cape Blend' is a distinctive South African red wine style. What formally defines it?",
+    opts: ["A wine produced exclusively from 100% Pinotage", "A blend containing 30–70% Pinotage alongside other permitted red varieties", "Any blend of Bordeaux varieties grown anywhere in the Western Cape", "A Rhône-inspired blend of Syrah and Grenache from the Swartland region"],
+    ans: 1,
+    explain: "A <strong>Cape Blend</strong> must contain between <strong>30% and 70% Pinotage</strong>, blended with other permitted red varieties such as Cabernet Sauvignon, Merlot, and Shiraz. This style celebrates South Africa's unique Pinotage while integrating it with complementary international varieties."
+  },
+  {
+    cat: "New World — South Africa",
+    q: "Stellenbosch is South Africa's most prestigious wine district. Where is it located relative to Cape Town?",
+    opts: ["600 km to the north, in a semi-desert Karoo climate", "Directly on the Atlantic coast, 10 km west of Cape Town city centre", "Approximately 50 km east of Cape Town, inland in a valley with a Mediterranean climate moderated by altitude and False Bay", "On the Garden Route, 400 km east of Cape Town near George"],
+    ans: 2,
+    explain: "<strong>Stellenbosch</strong> is approximately 50 km east of Cape Town in the <strong>Cape Winelands</strong>. A Mediterranean climate with warm, dry summers (moderated by altitude and False Bay breezes) makes it South Africa's most important district for Cabernet Sauvignon, Merlot, Syrah, and Chenin Blanc."
+  },
+
+  // ── SPARKLING WINES ──
+  {
+    cat: "Sparkling Wines",
+    q: "On a Champagne label, the abbreviation 'NM' (Négociant-Manipulant) identifies:",
+    opts: ["A small grower who makes and bottles Champagne exclusively from their own vineyards (RM — Récoltant-Manipulant)", "A Champagne house that purchases grapes or base wines from growers and produces Champagne under its own brand", "A cooperative where multiple growers pool their grapes for joint production (CM — Coopérative-Manipulant)", "An individual who has recently started producing Champagne for the first time (NR — Négociant-Récoltant)"],
+    ans: 1,
+    explain: "<strong>NM (Négociant-Manipulant)</strong> designates a <strong>Champagne house</strong> that buys grapes or base wines from growers, then makes and markets Champagne under its own label. Major NMs include Moët & Chandon, Veuve Clicquot, and Taittinger. <strong>RM (Récoltant-Manipulant)</strong> is a grower Champagne producer who makes wine from their own vines."
+  },
+  {
+    cat: "Sparkling Wines",
+    q: "English Sparkling Wine has achieved significant international recognition. From which region does the majority of England's award-winning sparkling wine originate?",
+    opts: ["The Midlands and Yorkshire Dales", "The Southeast — particularly Kent, East Sussex, West Sussex, and Hampshire", "Wales and the Severn Valley", "East Anglia — Norfolk and Suffolk coastal areas"],
+    ans: 1,
+    explain: "England's finest sparkling wines come predominantly from the <strong>Southeast</strong> — Kent, East and West Sussex, Hampshire, and Surrey. The chalk and limestone soils echo those of Champagne, and the cool climate is ideal for Chardonnay, Pinot Noir, and Pinot Meunier. Producers such as Nyetimber, Ridgeview, and Chapel Down have won major international competitions."
+  },
+  {
+    cat: "Sparkling Wines",
+    q: "What residual sugar level (g/L) defines the 'Extra Brut' sweetness category for sparkling wine?",
+    opts: ["0–6 g/L", "12–17 g/L", "32–50 g/L", "50–120 g/L"],
+    ans: 0,
+    explain: "The EU sparkling wine sweetness ladder from driest to sweetest is: <strong>Brut Nature</strong> (0–3 g/L, no dosage), <strong>Extra Brut</strong> (0–6 g/L), <strong>Brut</strong> (under 12 g/L), <strong>Extra Sec/Extra Dry</strong> (12–17 g/L), <strong>Sec</strong> (17–32 g/L), <strong>Demi-Sec</strong> (32–50 g/L), <strong>Doux</strong> (over 50 g/L)."
+  },
+  {
+    cat: "Sparkling Wines",
+    q: "Franciacorta DOCG, Italy's premier traditional-method sparkling wine, is produced in which region?",
+    opts: ["Veneto", "Piedmont", "Lombardy", "Tuscany"],
+    ans: 2,
+    explain: "<strong>Franciacorta</strong> DOCG is produced in <strong>Lombardy</strong>, southeast of Lake Iseo near Brescia. Made primarily from Chardonnay, Pinot Nero, and Pinot Bianco by the traditional method, non-vintage Franciacorta requires a minimum of <strong>18 months on the lees</strong> before release, with longer minimums for vintage and Riserva styles."
+  },
+
+  // ── FORTIFIED WINES ──
+  {
+    cat: "Fortified Wines",
+    q: "Madeira's unique character comes from a deliberate heating process. What is the difference between 'estufagem' and 'canteiro' methods of maturation?",
+    opts: ["Estufagem ages the wine underground in cool limestone caves; canteiro ages it in the open sun on the island's south-facing terraces", "Estufagem heats wine industrially in vats using hot water pipes (minimum 45°C for 3 months); canteiro matures wine slowly in barrels in naturally warm upper-floor lofts for many years", "Both methods are identical — 'canteiro' is simply the older Portuguese name for 'estufagem'", "Estufagem fortifies the wine before pressing; canteiro fortifies it after fermentation only"],
+    ans: 1,
+    explain: "<strong>Estufagem</strong> is the industrial method — wine is heated in large vats using hot water coils at a minimum of 45°C for at least 3 months, creating Madeira's cooked character economically. <strong>Canteiro</strong> is the traditional premium method — barrels are stored in warm, naturally heated upper-floor warehouses or lofts for many years, producing more complex and refined wines."
+  },
+  {
+    cat: "Fortified Wines",
+    q: "Which of the four classic Madeira styles, linked to grape variety, is described as medium-dry with nutty, smoky, and honeyed character?",
+    opts: ["Sercial", "Verdelho", "Bual (Boal)", "Malmsey (Malvasia)"],
+    ans: 1,
+    explain: "Madeira's four classic styles from driest to sweetest are: <strong>Sercial</strong> (bone dry), <strong>Verdelho</strong> (medium-dry — nutty, smoky, honey, citrus peel), <strong>Bual/Boal</strong> (medium-sweet), and <strong>Malmsey/Malvasia</strong> (sweetest and richest). All styles retain Madeira's characteristic high acidity and extraordinary longevity."
+  },
+  {
+    cat: "Fortified Wines",
+    q: "Ruby Port gets its name from its vivid deep red-ruby colour. What ageing conditions preserve this colour and fresh, fruity character?",
+    opts: ["Using the ruby-red Touriga Franca grape exclusively, which provides the intense colour", "Ageing for 2–3 years in large wooden vats with minimal oxygen exposure, preserving colour and fresh fruit character", "Using the Ruby grape variety, unique to the Douro Valley, as the base wine", "Adding ruby-red grape skins after fermentation to deepen colour before bottling"],
+    ans: 1,
+    explain: "<strong>Ruby Port</strong> — including Reserve Ruby — is aged in <strong>large wooden vats</strong> for approximately 2–3 years. The large vessel size minimises the ratio of wine to wood/air, limiting oxidation. This preserves the wine's bright <strong>ruby colour and fresh, primary fruit</strong> (red cherry, blackberry) that distinguishes it from the tawny, nutty styles produced in small barrels."
+  },
+
+  // ── WINEMAKING & VITICULTURE ──
+  {
+    cat: "Winemaking & Viticulture",
+    q: "What specific conditions encourage the development of beneficial noble rot (botrytis cinerea) rather than destructive grey rot?",
+    opts: ["Warm, consistently dry conditions throughout the entire growing season", "Alternating morning humidity or mist (allowing botrytis spores to penetrate grape skins) followed by warm, dry afternoons (desiccating grapes to concentrate rather than cause grey rot)", "Prolonged cold temperatures that kill botrytis spores before they spread to the vines", "Constant heavy rainfall and high humidity maintained right up to harvest"],
+    ans: 1,
+    explain: "<strong>Noble rot</strong> requires very specific microclimatic conditions: <strong>morning humidity or mist</strong> allows Botrytis cinerea spores to penetrate thin grape skins, while <strong>warm, sunny afternoons</strong> dehydrate the berries, concentrating sugars, acids, and glycerol rather than causing grey rot. Sauternes benefits from mists rising from the Ciron River meeting the warmer Garonne."
+  },
+  {
+    cat: "Winemaking & Viticulture",
+    q: "Phylloxera devastated European vineyards in the 19th century. How was the crisis ultimately resolved, and what is still the standard practice today?",
+    opts: ["Flooding vineyards during winter to drown the louse in the soil", "Grafting European Vitis vinifera vines onto phylloxera-resistant American rootstocks", "Treating soils with copper sulphate, which remains the only permitted method under European wine law", "Cross-breeding new European vine varieties with natural genetic resistance to the louse"],
+    ans: 1,
+    explain: "The phylloxera louse attacks the roots of <strong>Vitis vinifera</strong>, causing vines to die. The solution was to <strong>graft vinifera vines</strong> onto roots of phylloxera-resistant American <strong>Vitis rupestris, V. riparia</strong>, or V. berlandieri species. Today the vast majority of the world's vineyards use grafted vines. A few regions with sandy soils (e.g., parts of Colares, Chile's Maule Valley) may still have ungrafted vines."
+  },
+  {
+    cat: "Winemaking & Viticulture",
+    q: "A winemaker producing an aromatic white wine (e.g., Riesling or Sauvignon Blanc) in a cool climate might choose to prevent malolactic fermentation (MLF). Why?",
+    opts: ["Preventing MLF converts tartaric acid to citric acid, which raises the wine's perceived sweetness", "MLF converts sharper malic acid to softer lactic acid, reducing acidity and adding creamy texture — blocking it preserves the higher, crisper acidity and fresh fruit character desired in aromatic whites", "MLF converts residual sugar to alcohol, and blocking it keeps the wine light — under 10% ABV", "Preventing MLF removes sulphates from the wine, reducing the need for added sulphur dioxide at bottling"],
+    ans: 1,
+    explain: "<strong>Malolactic fermentation</strong> converts <strong>malic acid</strong> (sharp, green apple) to <strong>lactic acid</strong> (softer, dairy-like), reducing total acidity and adding creaminess. For full-bodied oaked Chardonnay this is desirable. For aromatic cool-climate whites like <strong>Riesling or Sauvignon Blanc</strong>, winemakers typically block MLF to preserve the zingy acidity and fresh primary fruit that defines the style."
+  },
+  {
+    cat: "Winemaking & Viticulture",
+    q: "Which winemaking intervention produces sweet residual sugar in wine by stopping fermentation before all grape sugar has been converted to alcohol?",
+    opts: ["Chaptalisation", "Arrested fermentation", "Acidification", "Cold stabilisation"],
+    ans: 1,
+    explain: "<strong>Arrested fermentation</strong> (stopping fermentation before completion) leaves unconverted grape sugar in the wine as <strong>residual sugar</strong>. It can be achieved by adding grape spirit to raise alcohol above yeast tolerance (as in Port), rapid chilling, or sterile filtration. Chaptalisation adds sugar before/during fermentation to boost alcohol — not to sweeten the finished wine."
+  },
+  {
+    cat: "Winemaking & Viticulture",
+    q: "What is 'racking' (soutirage) in cellar practice, and what are its benefits?",
+    opts: ["Pressing harvested grapes on a traditional rack-and-cloth press to separate juice from skins gently", "Transferring wine from one vessel to another, leaving behind settled lees — gradually clarifying the wine and allowing a small amount of beneficial oxygenation", "Adding inert oak staves to stainless steel tanks to impart oak flavour without buying barrels", "Rotating barrel positions in the cellar in a systematic cycle to ensure even ageing"],
+    ans: 1,
+    explain: "<strong>Racking</strong> (soutirage) involves pumping or siphoning wine from one container to another, leaving behind any settled sediment (lees). It gradually <strong>clarifies the wine</strong> and exposes it to controlled small amounts of oxygen, which can help integrate aromas and soften tannins. Multiple rackings are typical during barrel ageing of red wines."
+  },
+
+  // ── TASTING & FOOD PAIRING ──
+  {
+    cat: "Tasting & Food Pairing",
+    q: "On the WSET Level 2 SAT palate assessment, how is 'medium' acidity recognised in a wine?",
+    opts: ["The wine has no perceptible acidity — it tastes completely flat", "A balanced mouth-watering (salivating) sensation — neither very sharp and racy nor flat and flabby", "Acidity is only detectable on the nose as volatile aromas, not on the palate", "The wine's tartaric acid has been completely removed through cold stabilisation"],
+    ans: 1,
+    explain: "On the <strong>WSET SAT</strong>, acidity is assessed by the salivating response it creates. <strong>Medium acidity</strong> produces a <strong>balanced, mouth-watering sensation</strong> that refreshes the palate without being racy or sharp. Levels range from Low (minimal salivation) through Medium(–), Medium, Medium(+) to High (notably racy and salivating)."
+  },
+  {
+    cat: "Tasting & Food Pairing",
+    q: "Green bell pepper (capsicum) and freshly cut grass are aroma descriptors most typically associated with which grape variety?",
+    opts: ["Riesling", "Viognier", "Sauvignon Blanc", "Gewurztraminer"],
+    ans: 2,
+    explain: "Green bell pepper and grassy aromas in <strong>Sauvignon Blanc</strong> are caused by compounds called <strong>methoxypyrazines</strong>, which are especially prominent in cooler climates or earlier-harvested grapes. Classic examples include Sancerre, Pouilly-Fumé, and cool-climate New Zealand Marlborough Sauvignon Blanc (which also shows tropical fruit and gooseberry)."
+  },
+  {
+    cat: "Tasting & Food Pairing",
+    q: "The food and wine pairing principle of 'matching weight' suggests that:",
+    opts: ["The wine must always be heavier and more powerful than any food it accompanies, to dominate the palate", "Lighter-bodied wines should be paired with lighter dishes, and fuller-bodied wines suit richer, more substantial dishes — so neither overpowers the other", "Red wines must always be paired with meat, regardless of the food's actual texture or richness", "The wine's ABV percentage should numerically correspond to the food's cooking temperature in Celsius"],
+    ans: 1,
+    explain: "<strong>Weight (body) matching</strong> is a key food and wine pairing principle: a delicate Muscadet pairs well with oysters, while a full-bodied Barossa Shiraz suits braised beef short rib. If the wine is too heavy, it overwhelms the dish; if too light, it is swamped. The goal is <strong>balance</strong> — neither element dominates the other."
+  },
+  {
+    cat: "Tasting & Food Pairing",
+    q: "When assessing the sweetness of a still wine on the WSET SAT, what is the correct scale from driest to sweetest?",
+    opts: ["Dry → Off-dry → Medium-sweet → Sweet", "Bone dry → Semi-dry → Demi-sec → Moelleux", "Dry → Demi-sec → Off-dry → Sweet", "Off-dry → Dry → Medium → Medium-sweet"],
+    ans: 0,
+    explain: "The <strong>WSET SAT sweetness scale</strong> for still wines from driest to sweetest is: <strong>Dry → Off-dry → Medium-sweet → Sweet</strong>. Dry wines have no perceptible sweetness; off-dry have a slight hint; medium-sweet are noticeably sweet; sweet wines have obvious, prominent residual sugar — such as Sauternes or Trockenbeerenauslese."
+  },
+  {
+    cat: "Tasting & Food Pairing",
+    q: "A wine showing 'high' tannin, 'high' acidity, 'full' body, 'long' finish, and 'outstanding' quality on the WSET SAT would most plausibly be which type of wine?",
+    opts: ["A simple, everyday Pinot Grigio delle Venezie IGT", "A young, mass-market Australian Shiraz/Cabernet blend", "A premium, young structured red from a variety such as Nebbiolo (Barolo), Cabernet Sauvignon, or Sangiovese Grosso (Brunello) in a top vintage", "A Moscato d'Asti DOCG with partially arrested fermentation"],
+    ans: 2,
+    explain: "Outstanding balance with <strong>high tannin, high acidity, full body, and long finish</strong> is the hallmark of top-quality, structured red wines — such as young Barolo (Nebbiolo), a premier Napa Valley Cabernet Sauvignon, or Brunello di Montalcino (Sangiovese Grosso) in a great vintage. These wines are built for long ageing. A simple white, a basic blend, or Moscato d'Asti would display a completely different SAT profile."
+  }
+
+];
+
+// ── STATE ──
+const EXAM_QUESTION_COUNT = 50;
+const PASS_MARK = 35;
+let order = [];
+let answers = [];
+let current = 0;
+let answered = false;
+
+const CATS = [...new Set(QUESTIONS.map(q => q.cat))];
+
+function startExam() {
+  order = QUESTIONS.map((_, i) => i).sort(() => Math.random() - 0.5).slice(0, EXAM_QUESTION_COUNT);
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  answered = false;
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('exam-screen').style.display = 'block';
+  buildDots();
+  renderQ();
+}
+
+function buildDots() {
+  const track = document.getElementById('dot-track');
+  track.innerHTML = '';
+  order.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' current' : '');
+    d.id = 'dot-' + i;
+    track.appendChild(d);
+  });
+}
+
+function updateDots() {
+  order.forEach((_, i) => {
+    const d = document.getElementById('dot-' + i);
+    if (!d) return;
+    d.className = 'dot';
+    if (i < current) {
+      const realIdx = order[i];
+      d.className += answers[realIdx] === QUESTIONS[realIdx].ans ? ' done-correct' : ' done-wrong';
+    } else if (i === current) {
+      d.className += ' current';
+    }
+  });
+}
+
+function renderQ() {
+  answered = false;
+  const realIdx = order[current];
+  const q = QUESTIONS[realIdx];
+  const letters = ['A','B','C','D'];
+
+  document.getElementById('q-counter').innerHTML = `${current + 1} <span>/ ${order.length}</span>`;
+  document.getElementById('section-tag').textContent = q.cat;
+
+  let runCorrect = 0;
+  for (let i = 0; i < current; i++) {
+    const ri = order[i];
+    if (answers[ri] === QUESTIONS[ri].ans) runCorrect++;
+  }
+
+  const html = `
+    <div class="q-card">
+      <div class="q-category">${q.cat}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o, i) => `
+          <button class="opt" data-i="${i}" onclick="selectAnswer(${i})">
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${o}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="explanation" id="exp"></div>
+    </div>
+    <div class="q-nav">
+      <div class="score-running">Running score: <b>${runCorrect} / ${current}</b></div>
+      <button class="btn-primary" id="next-btn" style="display:none" onclick="nextQ()">
+        ${current < order.length - 1 ? 'Next Question →' : 'View Results'}
+      </button>
+    </div>
+  `;
+  document.getElementById('question-area').innerHTML = html;
+  updateDots();
+}
+
+function selectAnswer(sel) {
+  if (answered) return;
+  answered = true;
+  const realIdx = order[current];
+  const q = QUESTIONS[realIdx];
+  answers[realIdx] = sel;
+
+  document.querySelectorAll('.opt').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === sel) btn.classList.add('wrong');
+    else btn.classList.add('revealed');
+  });
+
+  const exp = document.getElementById('exp');
+  exp.innerHTML = q.explain;
+  exp.classList.add('show');
+
+  document.getElementById('next-btn').style.display = 'inline-block';
+  updateDots();
+}
+
+function nextQ() {
+  if (current < order.length - 1) {
+    current++;
+    renderQ();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  document.getElementById('exam-screen').style.display = 'none';
+  document.getElementById('results-screen').style.display = 'block';
+
+  let correct = 0;
+  order.forEach(i => { if (answers[i] === QUESTIONS[i].ans) correct++; });
+  const total = order.length;
+  const pct = Math.round((correct / total) * 100);
+  const pass = correct >= PASS_MARK;
+
+  document.getElementById('r-pct').textContent = pct + '%';
+  document.getElementById('r-pct').className = 'ring-pct ' + (pass ? 'pass' : 'fail');
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = total - correct;
+  document.getElementById('r-total').textContent = total;
+
+  document.getElementById('r-verdict').textContent = pass ? 'Pass — Well Done' : 'Refer — Not Yet';
+  document.getElementById('r-verdict').className = 'verdict ' + (pass ? 'pass' : 'fail');
+  document.getElementById('r-msg').textContent = pass
+    ? `${correct} of ${total} correct — you have demonstrated Level 2 knowledge`
+    : `${correct} of ${total} correct — ${PASS_MARK - correct} more required to pass`;
+
+  const arc = document.getElementById('r-arc');
+  const c2 = 2 * Math.PI * 80;
+  arc.style.strokeDasharray = c2;
+  arc.style.strokeDashoffset = c2;
+  arc.className = 'r-fill ' + (pass ? 'r-pass' : 'r-fail');
+  setTimeout(() => {
+    arc.style.strokeDashoffset = c2 - (pct / 100) * c2;
+  }, 120);
+
+  renderBreakdown();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderBreakdown() {
+  const catMap = {};
+  CATS.forEach(c => catMap[c] = { correct: 0, total: 0 });
+  QUESTIONS.forEach((q, i) => {
+    catMap[q.cat].total++;
+    if (answers[i] === q.ans) catMap[q.cat].correct++;
+  });
+
+  const colours = {
+    'France — Bordeaux': '#8b5e3c',
+    'France — Burgundy': '#7a3c5c',
+    'France — Rhône Valley': '#9b3c3c',
+    'France — Loire & Alsace': '#5c7a3c',
+    'Germany & Austria': '#3c5c8b',
+    'Italy': '#8b6b3c',
+    'Spain & Portugal': '#8b3c4a',
+    'New World — Americas': '#5c8b3c',
+    'New World — Australia & NZ': '#3c7a8b',
+    'New World — South Africa': '#7a5c8b',
+    'Sparkling Wines': '#8b7a3c',
+    'Fortified Wines': '#6b3c8b',
+    'Winemaking & Viticulture': '#3c8b6b',
+    'Tasting & Food Pairing': '#8b4a3c'
+  };
+
+  let html = '<div class="bd-header">Performance by Topic</div>';
+  CATS.forEach(cat => {
+    const d = catMap[cat];
+    if (!d || d.total === 0) return;
+    const p = Math.round((d.correct / d.total) * 100);
+    const col = colours[cat] || '#c8a951';
+    html += `
+      <div class="bd-row">
+        <div class="bd-name">${cat}</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" id="bar-${CSS.escape(cat)}" style="width:0%;background:${col}"></div></div>
+        <div class="bd-score">${d.correct}/${d.total}</div>
+      </div>
+    `;
+  });
+  document.getElementById('breakdown-section').innerHTML = html;
+
+  setTimeout(() => {
+    CATS.forEach(cat => {
+      const d = catMap[cat];
+      if (!d || d.total === 0) return;
+      const p = Math.round((d.correct / d.total) * 100);
+      const el = document.getElementById('bar-' + CSS.escape(cat));
+      if (el) el.style.width = p + '%';
+    });
+  }, 300);
+}
+
+let reviewOpen = false;
+function toggleReview() {
+  const sec = document.getElementById('review-section');
+  reviewOpen = !reviewOpen;
+  if (!reviewOpen) { sec.style.display = 'none'; return; }
+
+  const letters = ['A','B','C','D'];
+  let html = '<div class="review-hd">Full Answer Review</div>';
+  order.forEach((idx, shown) => {
+    const q = QUESTIONS[idx];
+    const i = idx;
+    const ua = answers[i];
+    const ok = ua === q.ans;
+    html += `
+      <div class="rev-item">
+        <div class="rev-cat">${q.cat}</div>
+        <div class="rev-q">${shown + 1}. ${q.q}</div>
+        <div class="rev-ans">
+          <span class="${ok ? 'ok' : 'your'}">Your answer: ${ua !== null ? letters[ua] + '. ' + q.opts[ua] : 'Not answered'} ${ok ? '✓' : '✗'}</span>
+          ${!ok ? `<span class="ok">Correct answer: ${letters[q.ans]}. ${q.opts[q.ans]}</span>` : ''}
+        </div>
+        <div class="rev-exp">${q.explain}</div>
+      </div>
+    `;
+  });
+  sec.innerHTML = html;
+  sec.style.display = 'block';
+  sec.scrollIntoView({ behavior: 'smooth' });
+}
+
+function retakeExam() {
+  reviewOpen = false;
+  document.getElementById('results-screen').style.display = 'none';
+  document.getElementById('intro-screen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("begin-exam-btn");
+  if (btn) btn.addEventListener("click", startExam, { passive: true });
+
+  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  if (params.get("autostart") === "1" || hash === "#start") {
+    startExam();
+  }
+});
+</script>
+
+</body></html>
